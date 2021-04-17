@@ -1,0 +1,23 @@
+<div id="registrar">
+  <span>Crear Usuario</span>
+</div> 
+<div id="envoltura">
+<div class="Contenedor">
+  <div id="cuerpo">
+    <form #FormCreacion="ngForm" (ngSubmit)="crearUsuario(FormCreacion)">
+      
+      <label for="email">Email</label><br>
+      <span class="no-access" *ngIf="FormCreacion.submitted && FormCreacion.controls['email'].errors">Debe ingresar el email</span>
+      <br><br><input id="email" required type="email" placeholder="Email" name="email" [(ngModel)]="usuario.correo">
+      <br><br><label for="nombre">Nombres</label><br>
+      <span class="no-access" *ngIf="FormCreacion.submitted && FormCreacion.controls['nombre'].errors">Debe ingresar el nombre</span>
+      <br><br> <input id="nombre" required name="nombre" placeholder="Nombre" [(ngModel)]="usuario.nombre" type="text">
+      <br><br><label for="password">Pasword</label><br>
+      <span class="no-access" *ngIf="FormCreacion.submitted && FormCreacion.controls['password'].errors">Debe ingresar el password</span>
+      <br><br><input id="password" required name="password" placeholder="Password" [(ngModel)]="usuario.clave" type="password">
+      <br><br>
+      <button type="submit" class="boton">Crear</button> <a routerLink="/ingresar">Ya tienes cuenta?</a>
+    </form>
+  </div>
+</div>
+</div>
