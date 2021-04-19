@@ -15,6 +15,12 @@ import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { ArbolesComponent } from './pages/arboles/arboles.component';
 import { ListaArbolesComponent } from './pages/arboles/lista-arboles/lista-arboles.component';
 import { ArbolComponent } from './pages/arboles/arbol/arbol.component';
+import { SitiosComponent } from './pages/sitios/sitios.component';
+import { ListaSitiosComponent } from './pages/sitios/lista-sitios/lista-sitios.component';
+import { SitioComponent } from './pages/sitios/sitio/sitio.component';
+import { EspecimenesComponent } from './pages/especimenes/especimenes.component';
+import { ListEspecimenesComponent } from './pages/especimenes/list-especimenes/list-especimenes.component';
+import { EspecimenComponent } from './pages/especimenes/especimen/especimen.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +30,13 @@ import { ArbolComponent } from './pages/arboles/arbol/arbol.component';
     HomeComponent,
     ArbolesComponent,
     ListaArbolesComponent,
-    ArbolComponent
+    ArbolComponent,
+    SitiosComponent,
+    ListaSitiosComponent,
+    SitioComponent,
+    EspecimenesComponent,
+    ListEspecimenesComponent,
+    EspecimenComponent
   ],
   imports: [
     BrowserModule,
