@@ -5,5 +5,7 @@ export class Especimen {
     sembrado_avistado : string ="";
     valor : string ="";
     imagen : string ="";
+    id_especie: number;
+    id_sitio: number;
     
 }

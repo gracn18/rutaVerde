@@ -1,0 +1,67 @@
+<h3 class="subtitulo">Reporte en tiempo real de la calidad del aire por zona</h3>
+<p class="descripcion">
+  Resultado de toma de variables de la calidad del aire en la zona verde.    Entre las variables podemos encontrar: Temperatura, Humedad, Localización de la muestra, Equivalente de Dióxido de Carbono (eCO2) y Monóxido de carbono (CO),
+</p>
+
+<hr>
+<div *ngIf="message" class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Atención !!! </strong> {{message}} 
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div *ngIf="control; else elseBlock2">
+  <ngx-datatable *ngIf="_reload"
+  class="bootstrap"
+  [rows]="rows"
+  [columnMode]="'force'"
+  [headerHeight]="50"
+  [footerHeight]="50"
+  [rowHeight]="'auto'"
+  [externalPaging]="true"
+  [count]="page.totalElements"
+  [offset]="page.page"
+  [limit]="page.size"
+  (page)='setPage($event)'>
+    <ngx-datatable-column prop="Fecha" Fecha="Fecha"   [sortable]="false"></ngx-datatable-column>
+    <ngx-datatable-column prop="Temperature" Temperature="Temperature" [sortable]="false"></ngx-datatable-column>
+    <ngx-datatable-column prop="Humidity" Humidity="Humidity" [sortable]="false"></ngx-datatable-column>
+    <ngx-datatable-column prop="eCO2" eCO2="eCO2" [sortable]="false"></ngx-datatable-column>
+    <ngx-datatable-column prop="CO" CO="CO" [sortable]="false"></ngx-datatable-column>
+    <ngx-datatable-column prop="Latitud" Latitud="Latitud" [sortable]="false"></ngx-datatable-column>
+    <ngx-datatable-column prop="Longitud" Longitud="Longitud" [sortable]="false"></ngx-datatable-column>
+    <ngx-datatable-column prop="Communication" Communication="Communication" [sortable]="false"></ngx-datatable-column>
+  </ngx-datatable>
+</div>
+
+<ng-template #elseBlock2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Fecha</th>
+        <th scope="col">Temperatura</th>
+        <th scope="col">Humedad</th>
+        <th scope="col">eCO2</th>
+        <th scope="col">CO</th>
+        <th scope="col">Latitud</th>
+        <th scope="col">Longitud</th>
+        <th scope="col">Comunicación</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let auth of calidads">
+        <td>{{auth.Fecha}}</td>
+        <td>{{auth.Temperature}}</td>
+        <td>{{auth.Humidity}}</td>
+        <td>{{auth.eCO2}}</td>
+        <td>{{auth.CO}}</td>
+        <td>{{auth.Latitud}}</td>
+        <td>{{auth.Longitud}}</td>
+        <td>{{auth.Communication}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+</ng-template>

@@ -8,6 +8,16 @@ import { Sitio } from '../models/sitio';
 export class SitioService {
 
   listaSitios : AngularFireList<any>;
+
+  private objeto: any;
+
+  public setObjeto(objetoData: any) {
+    this.objeto = objetoData;
+  }
+
+  public getObjeto(){
+    return this.objeto;
+  }
   
   
   constructor(private firebase:AngularFireDatabase) { }
@@ -27,7 +37,7 @@ export class SitioService {
   }
 
   actualizarSitio(sitio: Sitio){
-    this.listaSitios.update(sitio.id,{
+    this.listaSitios.update(String(sitio.id),{
       nombre : sitio.nombre,
       ubicacion : sitio.ubicacion,
       notas : sitio.notas

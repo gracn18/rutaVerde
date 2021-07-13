@@ -45,20 +45,24 @@ export class AuthsrvService {
       returnSecureToken:true //se deja en true para que permita el manejo de token
     }
     //Para utilizar un template, se debe utilizar la tilde francesa `
-    return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.llaveApi}`, datosUsuario)
-    
+    return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.llaveApi}`, datosUsuario);
   }
+
   salir(){
     this.tokenUsuario="";
     localStorage.clear();
   }
-  private guardarToken(idToken:string){
+  guardarToken(idToken:string){
     this.tokenUsuario=idToken;
     localStorage.setItem('token', this.tokenUsuario);
 
   }
   private obtenerToken(){
     this.tokenUsuario=localStorage.getItem("token") ? localStorage.getItem("token"):null;
+  }
+
+  public obtenerTokenExt(){
+    return this.tokenUsuario=localStorage.getItem("token") ? localStorage.getItem("token"):null;
   }
 
   estaLoggeado():boolean{

@@ -1,0 +1,138 @@
+<h3 class="subtitulo">Especimenes</h3>
+
+<!--<button (click)='ngOnInit()' class="btn btn-primary mb-2">Actualizar</button>-->
+<hr>
+<div *ngIf="message" class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Atención !!! </strong> {{message}} 
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#insertespeciePanel"
+(click)="loadespecieFormPanel()" data-whatever="@mdo">Crear Registro especie</button>
+<div class="modal fade" id="insertespeciePanel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Crear Registro especie...</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div *ngIf="controlespecieForm; else elseBlock1" class="modal-body">
+        <form [formGroup]="especieForm" (ngSubmit)="saveespecie()">
+          <div class="form-group">
+            <label>Especie</label>
+            <input type="text" formControlName="nombre" class="form-control"
+              [ngClass]="{ 'is-invalid': f.nombre.errors }" />
+            <div *ngIf="f.nombre.errors" class="invalid-feedback">
+              <div *ngIf="f.nombre.errors.required">nombre es requerido</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Sitio</label>
+            <input type="text" formControlName="ubicacion" class="form-control"
+              [ngClass]="{ 'is-invalid': f.ubicacion.errors }" />
+            <div *ngIf="f.ubicacion.errors" class="invalid-feedback">
+              <div *ngIf="f.ubicacion.errors.ubicacion">ubicacion debe ser formato email</div>
+              <div *ngIf="f.ubicacion.errors.required">ubicacion es requerido</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>notas</label>
+            <input type="text" formControlName="notas" class="form-control"
+              [ngClass]="{ 'is-invalid': f.notas.errors }" />
+            <div *ngIf="f.notas.errors" class="invalid-feedback">
+              <div *ngIf="f.notas.errors.required">notas es requerido</div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Crear</button>
+          </div>
+        </form>
+      </div>
+      <ng-template #elseBlock1>
+        <div class="modal-body">
+          <h5>Información.....!</h5>
+          <strong>especie agregado.....</strong>
+        </div>
+      </ng-template>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<form class="form-inline m1" [formGroup]="searchForm" (ngSubmit)="searchespecie()">
+  <div class="form-group">
+    <label for="inputPassword6" class="mbR">Filtro por Nombre : </label>
+    <input  type="text" class="form-control mx-sm-3" placeholder="Mínimo 3 caracteres" formControlName="id" class="form-control"
+      [ngClass]="{ 'is-invalid': sf.id.errors }" />
+    <div *ngIf="sf.id.errors" class="invalid-feedback">
+      <div *ngIf="sf.id.errors.minLength">Nombre Mínimo 3 caracteres.</div>
+    </div>
+  </div>
+  <div class="from-group">
+    <button type="submit" class="btn btn-primary mbL"> Buscar </button>
+  </div>
+</form>
+<hr>
+<div *ngIf="control; else elseBlock2">
+  <ngx-datatable *ngIf="_reload"
+  class="bootstrap"
+  [rows]="rows"
+  [columnMode]="'force'"
+  [headerHeight]="50"
+  [footerHeight]="50"
+  [rowHeight]="'auto'"
+  [externalPaging]="true"
+  [count]="page.totalElements"
+  [offset]="page.page"
+  [limit]="page.size"
+  (page)='setPage($event)'>
+    <ngx-datatable-column prop="id" id="id" [sortable]="false"></ngx-datatable-column>
+    <ngx-datatable-column prop="especie" id="especie" [sortable]="false"></ngx-datatable-column>
+    <ngx-datatable-column prop="sitio" id="sitio" [sortable]="false"></ngx-datatable-column>
+    <ngx-datatable-column prop="sembrado_avistado" id="sembrado_avistado" [sortable]="false"></ngx-datatable-column>
+    <ngx-datatable-column prop="valor" id="valor" [sortable]="false"></ngx-datatable-column>
+   <!-- <ngx-datatable-column prop="imagen" id="imagen" [sortable]="false"></ngx-datatable-column>-->
+    <ngx-datatable-column prop="" id="Actions " [sortable]="false">
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        <a [routerLink]="['especies-detail/',value.id]" (click)="irDetalle(value)" class="btn btn-sm btn-info"><strong>Ver en detalle</strong></a>
+        <button class="btn btn-sm btn-danger" (click)="deleteespecie(value.id)" ><strong>Eliminar</strong></button>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>
+
+<ng-template #elseBlock2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">especie</th>
+        <th scope="col">sitio</th>
+        <th scope="col">sembrado_avistado</th>
+        <th scope="col">valor</th>
+        <!--<th scope="col">imagen</th>-->
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let auth of especies">
+        <td>{{auth.id}}</td>
+        <td>{{auth.especie}}</td>
+        <td>{{auth.sitio}}</td>
+        <td>{{auth.sembrado_avistado}}</td>
+        <td>{{auth.valor}}</td>
+       <!-- <td>{{auth.imagen}}</td>-->
+        <td>
+          <a [routerLink]="['especie-detail/',auth.id]" class="btn btn-sm btn-info"><strong>Ver en detalle</strong></a>
+          <button class="btn btn-sm btn-danger" (click)="deleteespecie(auth.id)" ><strong>Eliminar</strong></button></td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+</ng-template>

@@ -14,9 +14,11 @@ export class HomeComponent implements OnInit {
   constructor(private srvAut : AuthsrvService, private router:Router) { }
 
   ngOnInit(): void {
+    //validar token
+    if(!this.srvAut.obtenerTokenExt())this.salir();
   }
 
-  salir(form: NgForm){
+  salir(){
     this.srvAut.salir();
     this.router.navigateByUrl('/ingresar')
   }

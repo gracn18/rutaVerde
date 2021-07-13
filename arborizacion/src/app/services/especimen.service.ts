@@ -7,6 +7,17 @@ import { Especimen } from '../models/especimen';
 })
 export class EspecimenService {
 
+
+  private objeto: any;
+
+  public setObjeto(objetoData: any) {
+    this.objeto = objetoData;
+  }
+
+  public getObjeto(){
+    return this.objeto;
+  }
+
   listaEspecimenes : AngularFireList<any>;
   
   
@@ -20,8 +31,8 @@ export class EspecimenService {
   saveEspecimen(especimen: Especimen){
     this.listaEspecimenes.push({
       id : especimen.id,
-      id_especie : especimen.id_especie,
-      id_sitio : especimen.id_sitio,
+      /*id_especie : especimen.id_especie,
+      id_sitio : especimen.id_sitio,*/
       especie : especimen.especie,
       sitio : especimen.sitio,
       sembrado_avistado : especimen.sembrado_avistado,
@@ -32,8 +43,8 @@ export class EspecimenService {
 
   actualizarEspecimen(especimen: Especimen){
     this.listaEspecimenes.update(especimen.id,{
-      id_especie : especimen.id_especie,
-      id_sitio : especimen.id_sitio,
+     /* id_especie : especimen.id_especie,
+      id_sitio : especimen.id_sitio,*/
       especie : especimen.especie,
       sitio : especimen.sitio,
       sembrado_avistado : especimen.sembrado_avistado,

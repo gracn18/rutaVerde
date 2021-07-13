@@ -1,1 +1,64 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.tox-tinymce-aux{
+    display: none!important;
+}
+
+/* prueba git branch
+.none{
+	  
+}
+*/
+
+.titulo{
+    color: #059900;
+}
+
+.subtitulo{
+    color: #008f3e;
+}
+
+.datatable-footer-inner{
+    background-color: #1ba350;
+}
+
+.datatable-header-cell-label{
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #008f8b;
+}
+
+.descripcion{
+    border: solid 1px;
+    border-color: #1ba350;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1da39d!important;
+    border-color: #1da39d!important;
+}
+
+.mbL{
+    margin-bottom: 0px!important;
+    margin-left: 1rem!important;
+}
+
+.mbR{
+    margin-right: 1rem!important;
+}
+
+.btn-warning{
+background-color: #059900c2!important;
+    border-color: #1da39d!important;
+    color: white!important;
+}
+
+.m1{
+    margin: 1rem;
+}

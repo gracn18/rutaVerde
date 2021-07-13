@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { CrearUsuarioComponent } from './pages/crear-usuario/crear-usuario.component';
 import { IngresarComponent } from './pages/ingresar/ingresar.component';
 import { HomeComponent } from './pages/home/home.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
@@ -22,27 +22,30 @@ import { EspecimenesComponent } from './pages/especimenes/especimenes.component'
 import { ListEspecimenesComponent } from './pages/especimenes/list-especimenes/list-especimenes.component';
 import { EspecimenComponent } from './pages/especimenes/especimen/especimen.component';
 
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { CommonModule } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
     CrearUsuarioComponent,
     IngresarComponent,
     HomeComponent,
-    ArbolesComponent,
-    ListaArbolesComponent,
-    ArbolComponent,
-    SitiosComponent,
-    ListaSitiosComponent,
-    SitioComponent,
-    EspecimenesComponent,
-    ListEspecimenesComponent,
-    EspecimenComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    BrowserModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    AppRoutingModule,
+    EditorModule ,
+    NgxDatatableModule,
+    CommonModule,
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [],

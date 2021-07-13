@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 })
 export class IngresarComponent implements OnInit {
   usuario : UserModel = new UserModel();
+  tokenUsuario: string;
 
   constructor(private srvAut : AuthsrvService, private router:Router) { }
 
@@ -27,10 +28,13 @@ export class IngresarComponent implements OnInit {
      this.srvAut.ingresar(this.usuario).subscribe(res =>{
        alert("Usuario loggeado");
        //Se envia al home
-       this.router.navigateByUrl('/principal')
+       this.srvAut.guardarToken(res['idToken']);
+       this.router.navigateByUrl('/');
      }, (error)=>{
        alert('Se presentó un inconveniente   '+error.error.error.message);
      });
    }
   }
+
+  
 }

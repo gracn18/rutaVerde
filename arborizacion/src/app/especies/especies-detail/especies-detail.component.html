@@ -1,0 +1,157 @@
+<h2>Registro: {{especie.id}} - {{especie.especie}}  </h2>
+<hr>
+<button class="btn btn-secondary" (click)="backClicked()" >Volver</button>
+<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateespeciePanel" 
+  (click)="LoadespecieUpdateForm(especie)" data-whatever="@mdo"> Actualizar </button>
+
+  
+  <div  class="modal fade" id="updateespeciePanel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document" width="500px " style="width: 500px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Actualizar Información</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div *ngIf="updated; else elseBlock1"  class="modal-body">
+        <form [formGroup]="especieUpdateForm" (ngSubmit)="updateespecie()">
+          <div class="form-group">
+            <label>id</label>
+            <input type="text" formControlName="id" class="form-control"
+              [ngClass]="{ 'is-invalid': f2.id.errors }" />
+            <div *ngIf="f2.id.errors" class="invalid-feedback">
+              <div *ngIf="f2.id.errors.required">id es requerido</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>nombre</label>
+            <input type="text" formControlName="nombre" class="form-control"
+              [ngClass]="{ 'is-invalid': f2.nombre.errors }" />
+            <div *ngIf="f2.nombre.errors" class="invalid-feedback">
+              <div *ngIf="f2.nombre.errors.required">nombre es requerido</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>ubicacion</label>
+            <input type="text" formControlName="ubicacion" class="form-control"
+              [ngClass]="{ 'is-invalid': f2.ubicacion.errors }" />
+            <div *ngIf="f2.ubicacion.errors" class="invalid-feedback">
+              <div *ngIf="f2.ubicacion.errors.required">ubicacion es requerido</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>notas</label>
+            <input type="text" formControlName="notas" class="form-control"
+              [ngClass]="{ 'is-invalid': f2.notas.errors }" />
+            <div *ngIf="f2.notas.errors" class="invalid-feedback">
+              <div *ngIf="f2.notas.errors.required">notas es requerido</div>
+            </div>
+          </div>
+ 
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" >Actualizar</button>
+          </div>
+        </form>
+      </div>
+      <ng-template #elseBlock1>
+        <div class="modal-body">
+          <h5>Información.....!</h5>
+          <strong>especie actualizada.....</strong>
+        </div>
+      </ng-template>
+      <div class="modal-footer">
+        <button class="btn btn-secondary"  data-dismiss="modal" >Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div  class="modal fade" id="insertPagina2Panel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Crear Pagina2...</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div *ngIf="showModal; else elseBlock2" class="modal-body">
+        <form [formGroup]="Pagina2Form" (ngSubmit)="savePagina2()">
+          <div class="form-group">
+            <label>notas</label>
+            <input type="text" formControlName="notas" class="form-control"
+              [ngClass]="{ 'is-invalid': f1.notas.errors }" />
+            <div *ngIf="f1.notas.errors" class="invalid-feedback">
+              <div *ngIf="f1.notas.errors.required">notas es requerido</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>ubicacion</label>
+            <input type="text" formControlName="ubicacion" class="form-control"
+              [ngClass]="{ 'is-invalid': f1.ubicacion.errors }" />
+            <div *ngIf="f1.ubicacion.errors" class="invalid-feedback">
+              <div *ngIf="f1.ubicacion.errors.required">ubicacion es requerido</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="badge">Pagina2 Status</label>
+            <select formControlName="pagina2Status" class="form-control" >
+              <option *ngFor="let val of pagina2Statuses" [value]="val">{{val}}</option>
+            </select>
+            <div *ngIf="f1.pagina2Status.errors" class="invalid-feedback">
+              <div *ngIf="f1.pagina2Status.errors.required">pagina2Status es requerido</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>especie</label>
+            <input type="text" readonly [value]="especie.especie +' '+ especie.valor" class="form-control" />
+   
+          </div>
+          <div class="form-group">
+            <label>nombre</label>
+            <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"  
+              formControlName="nombre" class="form-control"
+              [ngClass]="{ 'is-invalid': f1.nombre.errors }" ></textarea>
+            <div *ngIf="f1.nombre.errors" class="invalid-feedback">
+              <div *ngIf="f1.nombre.errors.required">nombre es requerido</div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" >Crear</button>
+          </div>
+        </form>
+      </div>
+      
+      <ng-template #elseBlock2>
+          <div class="modal-body">
+            <h5>Información.....!</h5>
+            <strong>Pagina2 agregado.....</strong>
+          </div>
+        </ng-template>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-dismiss="modal" >Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="card">
+  <h5 class="card-header">Datos</h5>
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><b>id : </b>{{especie.id}} </li>
+      <li class="list-group-item"><b>especie : </b>{{especie.especie}} </li>
+      <li class="list-group-item"><b>sitio : </b>{{especie.sitio}} </li>
+      <li class="list-group-item"><b>sembrado_avistado:  </b>{{especie.sembrado_avistado}} </li>
+      <li class="list-group-item"><b>valor:  </b>{{especie.valor}} </li>
+      <li class="list-group-item" style="text-align: center;"><b style="float: left;">imagen: </b><img src="assets/img/{{especie.imagen}}">   </li>
+    </ul>
+  </div>
+</div>
